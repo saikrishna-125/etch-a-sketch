@@ -6,7 +6,7 @@ body {
   flex-direction: column;
 }
 
-#change-size {
+button {
   margin-top: 30px;
   margin-bottom: 30px;
   padding: 20px 30px;
@@ -17,15 +17,20 @@ body {
   font-weight: bold;
 }
 
+button:hover {
+  background-color: #7b886b;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
   margin-top: 30px;
+  background-color: #a0ecd0;
 }
 
 .square {
   flex: 0 0 auto;
-  background-color: #a0ecd0;
   box-sizing: border-box;
+  opacity: 0;
   /* border: #495057 solid 1px; */
 }

@@ -1,10 +1,13 @@
 const body = document.querySelector("body");
 let container = document.querySelector(".container");
 const changeSizeBtn = document.querySelector("#change-size");
+const randomBtn = document.querySelector("#random-color");
 
 let size = 16;
 
-let color = "#714955";
+let defaultColor = "#7B886B";
+let opacity = 0;
+let randomToggle = false;
 
 // container dimensions
 const width = 800;
@@ -12,6 +15,21 @@ const height = 800;
 
 container.style.width = `${width}px`;
 container.style.height = `${height}px`;
+
+function random(number) {
+  return Math.floor(Math.random() * number);
+}
+
+function randomColor() {
+  return `rgb(${random(256)}, ${random(256)}, ${random(256)})`;
+}
+
+function styleUpdate(element) {
+  opacity = element.style.opacity;
+  color = !randomToggle ? defaultColor : randomColor();
+  element.style.backgroundColor = color;
+  element.style.opacity = opacity < 1 ? +opacity + 0.25 : 1;
+}
 
 // adds (size*size) number of divs to container
 // flex properties set in css file
@@ -23,11 +41,14 @@ function setupGrid(size) {
     square.style.width = `${width / size}px`;
 
     square.addEventListener("mouseover", (e) => {
-      if (e.buttons === 1) square.style.backgroundColor = color;
+      color = !randomToggle ? defaultColor : randomColor();
+      if (e.buttons === 1) {
+        styleUpdate(square);
+      }
     });
 
-    square.addEventListener("mousedown", (e) => {
-      square.style.backgroundColor = color;
+    square.addEventListener("mousedown", () => {
+      styleUpdate(square);
     });
 
     container.appendChild(square);
@@ -59,6 +80,16 @@ changeSizeBtn.addEventListener("click", () => {
   container = newContainer;
 
   setupGrid(size);
+});
+
+randomBtn.addEventListener("click", () => {
+  if (randomToggle) {
+    randomToggle = false;
+    randomBtn.style.backgroundColor = "#714955";
+  } else {
+    randomToggle = true;
+    randomBtn.style.backgroundColor = "#7B886B";
+  }
 });
 
 setupGrid(size);
