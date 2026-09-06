@@ -41,13 +41,14 @@ function setupGrid(size) {
     square.style.width = `${width / size}px`;
 
     square.addEventListener("mouseover", (e) => {
-      color = !randomToggle ? defaultColor : randomColor();
+      e.preventDefault();
       if (e.buttons === 1) {
         styleUpdate(square);
       }
     });
 
-    square.addEventListener("mousedown", () => {
+    square.addEventListener("mousedown", (e) => {
+      e.preventDefault();
       styleUpdate(square);
     });
 
