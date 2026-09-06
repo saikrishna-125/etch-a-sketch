@@ -1,8 +1,9 @@
 body {
-  background-color: #003049;
+  background-color: #002029;
   display: flex;
-  justify-content: center;
+  justify-content: stretch;
   align-items: center;
+  flex-direction: column;
 }
 
 #container {
@@ -13,7 +14,7 @@ body {
 
 .square {
   flex: 0 0 auto;
-  background-color: #fdf0d5;
+  background-color: #00303d;
   box-sizing: border-box;
-  border: #669bbc solid 1px;
+  /* border: #495057 solid 1px; */
 }
